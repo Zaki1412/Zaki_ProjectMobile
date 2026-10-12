@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -15,7 +16,7 @@ import kotlin.math.log
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var  binding : ActivityLoginBinding
+    private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,19 +29,29 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
+// Kondisi jika isLogin bernilai true
+
 
         binding.btn.setOnClickListener {
-           val user = binding.username.text.toString()
+            val user = binding.username.text.toString()
             val pass = binding.password.text.toString()
-            Log.e("hasil", "username $user Password $pass")
 
-            Toast.makeText(this, "username $user Password $pass", Toast.LENGTH_LONG).show()
+            if (user.isNotEmpty() && user == pass) {
+                val editor = sharedPref.edit()
+                editor.putBoolean("isLogin", true)
+                editor.putString("username", user)
+                editor.apply()
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            } else {
+                AlertDialog.Builder(this)
+                    .setTitle("Login Gagal")
+                    .setMessage("Silahkan coba lagi")
+                    .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                    .show()
 
-            val intent = Intent( this,  MainActivity::class.java)
-            intent.putExtra("username", user)
-            intent.putExtra("password", pass)
-            intent.putExtra("umur", 67)
-            startActivity(intent)
+            }
         }
     }
 }
