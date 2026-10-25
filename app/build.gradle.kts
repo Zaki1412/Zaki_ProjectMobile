@@ -29,6 +29,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+    // Disini jikalau kita membuat kelas penghubung secara otomatis untuk setiap file xml contohnya
+    // activity.login.xml otomatis nanti terbuat kelas ActivityLoginBinding.kt pada file example
     buildFeatures{
         viewBinding = true
     }
@@ -40,6 +42,7 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
+    implementation("com.github.bumptech.glide:glide:4.16.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)

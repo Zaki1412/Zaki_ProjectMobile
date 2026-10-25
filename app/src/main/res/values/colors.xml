@@ -2,5 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="button">#433166</color>
+    <color name="button">#4A3B76</color>
+
+    <color name="nirmana_bg_dark">#121212</color>
+    <color name="nirmana_surface_dark">#1E1E1E</color>
+    <color name="nirmana_mint">#B8D9C5</color>
+    <color name="nirmana_gray">#A3A3A3</color>
+    <color name="nirmana_cream">#F4F0E8</color>
 </resources>
