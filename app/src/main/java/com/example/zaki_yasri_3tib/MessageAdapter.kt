@@ -29,15 +29,14 @@ class MessageAdapter(
         binding.textTime.text = data.time
 
         view.setOnClickListener {
-            val intent = Intent(context, DetailActivity::class.java).apply {
-                putExtra("EXTRA_JUDUL", data.senderName)
-                putExtra("EXTRA_KREATOR", data.messageText)
-                putExtra(
-                    "EXTRA_DESKRIPSI",
-                    "Karya koleksi NIRMANA (${data.senderName}) yang diunggah pada pukul ${data.time}. Menampilkan eksplorasi bentuk dan warna dalam komposisi visual digital."
-                )
-                putExtra("EXTRA_GAMBAR", data.avatarUrl)
-            }
+            val intent = Intent(context, DetailActivity::class.java)
+            intent.putExtra("EXTRA_JUDUL", data.senderName)
+            intent.putExtra("EXTRA_KREATOR", data.messageText)
+            intent.putExtra(
+                "EXTRA_DESKRIPSI",
+                "Karya koleksi NIRMANA (${data.senderName}) yang diunggah pada pukul ${data.time}. Menampilkan eksplorasi bentuk dan warna dalam komposisi visual digital."
+            )
+            intent.putExtra("EXTRA_GAMBAR", data.avatarUrl)
             context.startActivity(intent)
         }
 

@@ -16,6 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/nirmana_surface_dark"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
             app:layout_scrollFlags="scroll|enterAlways"
             app:title="Cari Kategori &amp; Aliran"
             app:titleTextColor="@color/nirmana_cream" />
@@ -25,7 +27,9 @@
         android:id="@+id/listViewItems"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E8E4DC"
+        android:background="@color/nirmana_bg_dark"
+        android:divider="@color/nirmana_surface_dark"
+        android:dividerHeight="1dp"
         android:nestedScrollingEnabled="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 

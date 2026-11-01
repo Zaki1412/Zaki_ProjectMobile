@@ -44,7 +44,7 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/daragon" />
+        app:srcCompat="@drawable/warna" />
 
     <ImageView
         android:id="@+id/imgLoginTengah"
@@ -56,18 +56,18 @@
         app:layout_constraintEnd_toStartOf="@+id/imgLoginKanan"
         app:layout_constraintStart_toEndOf="@+id/imgLoginKiri"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/tenang" />
+        app:srcCompat="@drawable/gunung" />
 
     <ImageView
         android:id="@+id/imgLoginKanan"
-        android:layout_width="105dp"
+        android:layout_width="75dp"
         android:layout_height="140dp"
         android:layout_marginTop="48dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imgLoginTengah"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/duragon" />
+        app:srcCompat="@drawable/mawar" />
 
 
     <TextView

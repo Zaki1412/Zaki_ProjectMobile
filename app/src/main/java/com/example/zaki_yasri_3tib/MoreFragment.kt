@@ -95,9 +95,9 @@ class MoreFragment : Fragment() {
         val adapter = SimpleAdapter(
             requireContext(),
             dataListWithDesc,
-            android.R.layout.simple_list_item_2,
+            R.layout.item_kategori,
             arrayOf("title", "desc"),
-            intArrayOf(android.R.id.text1, android.R.id.text2)
+            intArrayOf(R.id.tvJudulKategori, R.id.tvDeskKategori)
         )
 
         binding.listViewItems.adapter = adapter

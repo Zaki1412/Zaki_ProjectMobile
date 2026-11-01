@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.zaki_yasri_3tib.databinding.FragmentHomeBinding
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.chip.Chip
 
 class HomeFragment : Fragment() {
 
@@ -28,54 +28,44 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         (requireActivity() as AppCompatActivity).setSupportActionBar(binding.toolbar)
-        (requireActivity() as AppCompatActivity).supportActionBar?.title = "  NIRMANA"
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = ""
 
         val sharedPref = requireContext().getSharedPreferences("user_pref", Context.MODE_PRIVATE)
         val username = sharedPref.getString("username", "kyass")
         binding.tvWelcome.text = "Jelajahi Karya ($username)"
 
+        binding.cardKarya1.setOnClickListener { bukaDetail() }
+        binding.cardKarya2.setOnClickListener { bukaDetail() }
+        binding.cardKarya3.setOnClickListener { bukaDetail() }
+        binding.cardKarya4.setOnClickListener { bukaDetail() }
 
-        val bukaDetail = View.OnClickListener {
-            val intent = Intent(requireContext(), DetailActivity::class.java)
-            startActivity(intent)
+
+        binding.chipGroupFilter.setOnCheckedStateChangeListener { group, checkedIds ->
+            val selectedChipId = checkedIds.firstOrNull()
+            if (selectedChipId != null) {
+                val chip = group.findViewById<Chip>(selectedChipId)
+                Toast.makeText(requireContext(), "Filter: ${chip.text}", Toast.LENGTH_SHORT).show()
+
+            }
         }
 
-        binding.cardKarya1.setOnClickListener(bukaDetail)
-        binding.cardKarya2.setOnClickListener(bukaDetail)
-        binding.cardKarya3.setOnClickListener(bukaDetail)
-        binding.cardKarya4.setOnClickListener(bukaDetail)
 
-        binding.btnSnackbar.setOnClickListener {
-            Snackbar.make(binding.root, "Karya disimpan ke koleksi", Snackbar.LENGTH_LONG)
-                .setAction("BATAL") {}
-                .show()
-        }
+        binding.btnKat1.setOnClickListener { tampilKategori("Dwimatra") }
+        binding.btnKat2.setOnClickListener { tampilKategori("Trimatra") }
+        binding.btnKat3.setOnClickListener { tampilKategori("Lanskap") }
+        binding.btnKat4.setOnClickListener { tampilKategori("Kaca Patri") }
+        binding.btnKat5.setOnClickListener { tampilKategori("Fantasi") }
+        binding.btnKat6.setOnClickListener { tampilKategori("Karakter") }
+    }
 
-        binding.btnAlert.setOnClickListener {
-            MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Hapus data")
-                .setMessage("Data yang dihapus tidak bisa dikembalikan.")
-                .setNegativeButton("Batal", null)
-                .setPositiveButton("Hapus") { dialog, _ -> dialog.dismiss() }
-                .setCancelable(false)
-                .show()
-        }
+    private fun bukaDetail() {
+        startActivity(Intent(requireContext(), DetailActivity::class.java))
+    }
 
-        binding.btnLogout.setOnClickListener {
-            MaterialAlertDialogBuilder(requireContext())
-                .setTitle("Konfirmasi Logout")
-                .setMessage("Apakah kamu yakin ingin keluar?")
-                .setNegativeButton("Batal", null)
-                .setPositiveButton("Ya") { dialog, _ ->
-                    sharedPref.edit().clear().apply()
-                    dialog.dismiss()
-                    val intent = Intent(requireContext(), LoginActivity::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    startActivity(intent)
-                }
-                .show()
-        }
+    private fun tampilKategori(nama: String) {
+        Toast.makeText(requireContext(), "Kategori: $nama", Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

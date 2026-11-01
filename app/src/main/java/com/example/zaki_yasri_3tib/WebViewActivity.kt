@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import com.example.zaki_yasri_3tib.databinding.ActivityWebViewBinding
 
 class WebViewActivity : AppCompatActivity() {
@@ -14,13 +16,15 @@ class WebViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityWebViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.apply {
-            title = "Referensi Karya Visual"
-            setDisplayHomeAsUpEnabled(true)
-            setDisplayShowHomeEnabled(true)
-        }
+        supportActionBar?.title = "Referensi Karya Visual"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.webView.webViewClient = WebViewClient()
         binding.webView.settings.javaScriptEnabled = true

@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_galeri"
-        android:icon="@android:drawable/ic_menu_gallery"
+        android:icon="@drawable/ic_galeri"
         android:title="Galeri" />
     <item
         android:id="@+id/nav_cari"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/ic_cari"
         android:title="Cari" />
     <item
         android:id="@+id/nav_tersimpan"
-        android:icon="@android:drawable/ic_menu_save"
+        android:icon="@drawable/ic_tersimpan"
         android:title="Tersimpan" />
 </menu>

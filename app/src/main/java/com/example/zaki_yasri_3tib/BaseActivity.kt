@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.zaki_yasri_3tib.databinding.ActivityBaseBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class BaseActivity : AppCompatActivity() {
 
@@ -73,6 +74,25 @@ class BaseActivity : AppCompatActivity() {
 
             R.id.action_info -> {
                 Toast.makeText(this, "NIRMANA - Katalog Karya Visual Digital", Toast.LENGTH_SHORT)
+                    .show()
+                true
+            }
+
+            R.id.action_logout -> {
+                MaterialAlertDialogBuilder(this)
+                    .setTitle("Konfirmasi Logout")
+                    .setMessage("Apakah kamu yakin ingin keluar?")
+                    .setNegativeButton("Batal", null)
+                    .setPositiveButton("Ya") { dialog, _ ->
+                        val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
+                        sharedPref.edit().clear().apply()
+                        dialog.dismiss()
+                        val intent = Intent(this, LoginActivity::class.java)
+                        intent.flags =
+                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                    }
+                    .setCancelable(false)
                     .show()
                 true
             }

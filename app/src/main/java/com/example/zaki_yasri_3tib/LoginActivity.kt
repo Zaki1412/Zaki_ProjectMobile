@@ -42,13 +42,13 @@ class LoginActivity : AppCompatActivity() {
             val user = binding.username.text.toString().trim()
             val pass = binding.password.text.toString().trim()
 
-            // Penerapan Exception Handling try-catch-finally (Modul Pertemuan 2 Hal. 17)
+
             try {
                 if (user.isEmpty() || pass.isEmpty()) {
                     throw Exception("Nama Pengguna dan Password tidak boleh kosong!")
                 }
 
-                // Memanggil Higher-Order Function dengan parameter Lambda
+
                 val isBerhasil = validasiKredensial(user, pass, cekSama)
 
                 if (isBerhasil) {
@@ -58,7 +58,7 @@ class LoginActivity : AppCompatActivity() {
                     editor.putString("username", user)
                     editor.putString("password", pass)
                     editor.apply()
-                    // Toast disini untuk menampilkan pop up singkat sekitar 2 detikkan
+
                     Toast.makeText(this, "Login Berhasil! Selamat datang $user", Toast.LENGTH_SHORT)
                         .show()
 
